@@ -3,6 +3,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include <unistd.h>
+#include "main.h"
 
 /**
  * _printf - Produces an output according to a format.
@@ -54,7 +55,7 @@ int _printf(const char *format, ...)
 
 	va_end(ap);
 
-	return(i);
+	return (i);
 }
 
 /**
@@ -67,5 +68,5 @@ int _printf(const char *format, ...)
 
 int _writ(char c)
 {
-	return(write(1, &c, 1));
+	return (write(1, &c, 1));
 }
