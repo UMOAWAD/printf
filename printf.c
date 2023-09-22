@@ -14,13 +14,9 @@
 
 int _printf(const char *format, ...)
 {
-	int i, n, j;
-	char *print;
+	int i, j;
 	va_list ap;
 	va_start(ap, format);
-
-	n = 0;
-	print = malloc(sizeof(char) * sizeof(format));
 
 	for (i = 0; format[i] != '\0'; i++)
 	{
@@ -28,8 +24,7 @@ int _printf(const char *format, ...)
 		{
 			if (format[i + 1] == 'c' || format[i + 1] == '%')
 			{
-				print[n] = va_arg(ap, int);
-				n++;
+				_writ(va_arg(ap, int);
 				i++;
 			}
 			else if (format[i + 1] == 's')
@@ -38,28 +33,33 @@ int _printf(const char *format, ...)
 
 				for (j = 0; arg[j] != '\0'; j++)
 				{
-					print[n] = arg[j];
-					n++;
+					_writ(arg[j]);
 				}
-
-				n++;
 				i++;
 			}
 		}
 		else
 		{
-			print[n] = format[i];
-			n++;
+			_writ(format[i]);
 		}
 	}
 
-	print[n] = '\0';
-
-	write(1, print, n);
+	_writ('\0');
 
 	va_end(ap);
 
-	free(print);
-
 	return(n);
+}
+
+/**
+ * _writ - prints a character.
+ *
+ * @c: The character to print.
+ *
+ * Return: write.
+ */
+
+int _writ(char c)
+{
+	return(write(1, &c, 1));
 }
