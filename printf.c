@@ -22,9 +22,9 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == 'c' || format[i + 1] == '%')
+			if (format[i + 1] == 'c')
 			{
-				_writ(va_arg(ap, int);
+				_writ(va_arg(ap, int));
 				i++;
 			}
 			else if (format[i + 1] == 's')
@@ -35,6 +35,12 @@ int _printf(const char *format, ...)
 				{
 					_writ(arg[j]);
 				}
+
+				i++;
+			}
+			else if (format[i + 1] == '%')
+			{
+				_writ(format[i]);
 				i++;
 			}
 		}
@@ -52,7 +58,7 @@ int _printf(const char *format, ...)
 }
 
 /**
- * _writ - prints a character.
+ * _writ: prints a character.
  *
  * @c: The character to print.
  *
